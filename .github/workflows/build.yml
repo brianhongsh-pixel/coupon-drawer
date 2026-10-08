@@ -25,8 +25,6 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - uses: android-actions/setup-android@v3
-
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.9"
@@ -72,6 +70,8 @@ jobs:
   web:
     name: 웹 버전 (GitHub Pages)
     runs-on: ubuntu-latest
+    # Settings → Pages 를 켠 뒤 Settings → Secrets and variables → Actions → Variables 에 ENABLE_PAGES=true 를 추가하면 실행돼요
+    if: ${{ vars.ENABLE_PAGES == 'true' }}
     continue-on-error: true
     environment:
       name: github-pages
